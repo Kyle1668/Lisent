@@ -7,8 +7,7 @@ from nltk.tokenize import word_tokenize
 from textblob.sentiments import NaiveBayesAnalyzer
 
 
-def format_input():
-    user_input = sys.argv[1]
+def format_input(user_input):
     formatted_words = []
     return_text = ""
 
@@ -60,12 +59,12 @@ def main():
 
         json.dump(json_response, sys.stdout, indent=4, sort_keys=True)
     else:
-        json.dump({
+        {
             "argued_text": None,
             "classification": None,
             "P_Pos": None,
             "P_Neg": None
-        }, sys.stdout, indent=4, sort_keys=True)
+        }
 
 
 main()
