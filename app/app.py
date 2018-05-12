@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
-
 from sentiment_analyzer import analyzer
 
 app = Flask(__name__)
