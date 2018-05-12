@@ -10,6 +10,9 @@ COPY . /lisent/
 
 WORKDIR /lisent/
 
+RUN python -m textblob.download_corpora
+RUN python nltk_setup.py
+
 EXPOSE 3000
 
 CMD ["python", "api/app.py"]

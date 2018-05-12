@@ -1,8 +1,9 @@
 import sys
 import json
+import nltk
 from textblob import TextBlob
 from nltk.stem import PorterStemmer
-from stop_words import english_stop_words
+from .sentiment_util import english_stop_words
 from nltk.tokenize import word_tokenize
 from textblob.sentiments import NaiveBayesAnalyzer
 
@@ -31,11 +32,12 @@ def format_input(user_input):
 
 
 def get_sentiment(argued_text):
-    formatted_argued_text = TextBlob(argued_text, analyzer=NaiveBayesAnalyzer())
+    formatted_argued_text = TextBlob(
+        argued_text, analyzer=NaiveBayesAnalyzer())
     return formatted_argued_text.sentiment
 
 
-def convert_data_to_json(sentiment_data):
+def convert_data_to_json(text, sentiment_data):
     if abs(sentiment_data.p_pos - sentiment_data.p_neg) <= .05:
         return_classification = "Neutral"
     elif sentiment_data.classification is "pos":
@@ -44,27 +46,15 @@ def convert_data_to_json(sentiment_data):
         return_classification = "Negative"
 
     return {
-        "argued_text": sys.argv[1],
+        "argued_text": text,
         "classification": return_classification,
-        "P_Pos": sentiment_data.p_pos,
-        "P_Neg": sentiment_data.p_neg
+        "percent_posative": sentiment_data.p_pos,
+        "percent_negative": sentiment_data.p_neg
     }
 
 
-def main():
-    if len(sys.argv) >= 1:
-        entered_text = format_input()
-        sentiment_data = get_sentiment(entered_text)
-        json_response = convert_data_to_json(sentiment_data)
-
-        json.dump(json_response, sys.stdout, indent=4, sort_keys=True)
-    else:
-        {
-            "argued_text": None,
-            "classification": None,
-            "P_Pos": None,
-            "P_Neg": None
-        }
-
-
-main()
+def sentiment_analyzer(input_text):
+    entered_text = format_input(input_text)
+    sentiment_data = get_sentiment(entered_text)
+    json_response = convert_data_to_json(input_text, sentiment_data)
+    return json_response

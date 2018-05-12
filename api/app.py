@@ -2,6 +2,8 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 
+from sentiment_analyzer import analyzer
+
 app = Flask(__name__)
 
 
@@ -17,13 +19,10 @@ def api():
     if input_text is None:
         return jsonify(error="Empty Argument", results={})
     else:
+        input_text = input_text.replace("\"", "")
         return jsonify(
-            input=input_text.replace("\"", ""),
-            result={
-                "classification": None,
-                "P_Pos": None,
-                "P_Neg": None
-            }
+            input=input_text,
+            result=analyzer.sentiment_analyzer(input_text)
         )
 
 
