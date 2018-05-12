@@ -8,7 +8,7 @@ from nltk.tokenize import word_tokenize
 from textblob.sentiments import NaiveBayesAnalyzer
 
 
-def format_input(user_input):
+def format_input(str: user_input):
     formatted_words = []
     return_text = ""
 
@@ -31,13 +31,13 @@ def format_input(user_input):
     return return_text
 
 
-def get_sentiment(argued_text):
+def get_sentiment(str: argued_text):
     formatted_argued_text = TextBlob(
         argued_text, analyzer=NaiveBayesAnalyzer())
     return formatted_argued_text.sentiment
 
 
-def convert_data_to_json(text, sentiment_data):
+def convert_data_to_json(str: text, dict: sentiment_data):
     if abs(sentiment_data.p_pos - sentiment_data.p_neg) <= .05:
         return_classification = "Neutral"
     elif sentiment_data.classification is "pos":

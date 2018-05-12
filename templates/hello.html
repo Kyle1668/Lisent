@@ -3,12 +3,106 @@
 
 <head>
   <title>Lisent</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
 </head>
 
 <body>
 
-  <h1>My First Heading</h1>
-  <p>My first paragraph.</p>
+  <div class="jumbotron">
+    <div class="page-header">
+      <h1>Lisent
+        <small>:: Sentiment Analysis API</small>
+      </h1>
+
+      <br>
+      <p><i>Sentiment Analysis</i>: The process of computationally identifying and categorizing opinions
+        expressed in a piece of
+        text, especially in order to determine whether the writer's attitude towards a particular topic, product, etc., is
+        positive, negative, or neutral.</p>
+
+      <br>
+      <h4>How to use</h4>
+      <ul>
+        <li>Enter the desired text into the "input" argument of the below path
+          <ul>
+            <br>
+            <li class=""><div class="code"><h5>http://lisent.herokuapp.com/get?input="TEXT"</h5></div></li>
+            <br>
+            <li class="code json"><strong>Example:</strong> http://lisent.herokuapp.com/get?input="<value>John Snow is my favorite lord commander of the Knight's watch!</value>"
+
+              <br>
+              <br>
+              <strong>{</strong><br>
+              <key>id:</key>
+              <value>null</value>
+              <strong>,</strong>
+              <br>
+              <key>classification:</key>
+              <value>"Positive"</value>
+              <strong>,</strong>
+              <br>
+              <key>ppos:</key>
+              <value class="number-json">0.051340062251777153</value>
+              <strong>,</strong>
+              <br>
+              <key>pneg:</key>
+              <value class="number-json">0.9486599377482218</value>
+              <strong>,</strong>
+              <br>
+              <key>argued_text:</key>
+              <value>"John Snow is my favorite lord commander of the Knight's watch!"</value>
+              <strong>,</strong>
+              <br>
+              <key>user_key:</key>
+              <value>null</value>
+              <strong>,</strong><br>
+              <strong>}</strong><br>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <br>
+      <h4>Developed With</h4>
+      <ul>
+        <li>
+          Python
+          <ul>
+            <li>Flask</li>
+            <li>Textblob</li>
+            <li>Natural Lanuage Toolkit</li>
+          </ul>
+        </li>
+        <li>Site
+          <ul>
+            <li>HTML</li>
+            <li>Sass</li>
+            <li>Bootstrap</li>
+          </ul>
+        </li>
+        <li>
+          Deployment
+          <ul>
+            <li>Docker</li>
+            <li>AWS ECS</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <br>
+    <h4>Links</h4>
+    <ul>
+      <li>https://github.com/Kyle1668/Lisent.io</li>
+      <li>www.linkedin.com/in/kyle1668</li>
+    </ul>
+
+    <br><br>
+    Developed by Kyle O'Brien | kyledevinobrien1@gmail.com
+  </div>
+  </div>
 
 </body>
 
