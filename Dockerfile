@@ -14,6 +14,6 @@ RUN python -m textblob.download_corpora
 
 RUN python nltk_setup.py
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["python", "app.py"]
