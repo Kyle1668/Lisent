@@ -12,29 +12,49 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("hello.html")
+	"""[Renders the welcome page]
+
+	Returns:
+		[Flask Template] -- [Welcome HTML Page]
+	"""
+
+	return render_template("about.html")
 
 
 @app.route("/api/")
 def api():
-    input_text = request.args.get("text")
+	"""[Handles API requests and returns results.]
 
-    if input_text is None:
-        return jsonify(error="Empty Argument", results={})
-    else:
-        input_text = input_text.replace("\"", "")
-        return jsonify(
-            input=input_text,
-            results=analyzer.sentiment_analyzer(input_text)
-        )
+	Returns:
+		[flask.Response] -- [JSON results from the sentiment analyzer.]
+	"""
+
+	input_text = request.args.get("text")
+
+	if input_text is None:
+		return jsonify(error="Empty Argument", results={})
+	else:
+		input_text = input_text.replace("\"", "")
+		return jsonify(
+			input=input_text,
+			results=analyzer.sentiment_analyzer(input_text)
+		)
+
+
+def configure_app():
+	"""[Downloads the necessary NLTK and Textblob dependencies and determines which port to listen on.]
+
+	Returns:
+		[int] -- [The port to listen on. Will default to 5000 for local development.]
+	"""
+
+	nltk.download('punkt')
+	os.system("python -m textblob.download_corpora")
+
+	port = int(os.environ.get('PORT', 5000))
+
+	return port
 
 
 if __name__ == "__main__":
-
-    # NLTK
-    nltk.download('punkt')
-    os.system("python -m textblob.download_corpora")
-
-    # Bind to PORT if defined, otherwise default to 5000.
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+	app.run(host="0.0.0.0", port=configure_app(), debug=True)
