@@ -12,6 +12,8 @@ WORKDIR /lisent/
 
 RUN python -m textblob.download_corpora
 
+RUN python nltk_setup.py
+
 EXPOSE 5000
 
 CMD ["python", "app.py"]
