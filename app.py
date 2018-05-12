@@ -1,11 +1,11 @@
+import os
+import nltk
+
 from flask import Flask
 from flask import jsonify
 from flask import request
 from flask import render_template
 from sentiment_analyzer import analyzer
-
-import os
-import nltk
 
 app = Flask(__name__)
 
