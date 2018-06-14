@@ -10,3 +10,7 @@ nltk == 3.3
 
 # sentiment-analyzer/analyzer.py: 3,7
 textblob == 0.15.1
+
+# Other
+pylint
+pytest
