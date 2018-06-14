@@ -1,11 +1,9 @@
-import sys
-import json
-import nltk
-from textblob import TextBlob
 from nltk.stem import PorterStemmer
-from .sentiment_util import english_stop_words
 from nltk.tokenize import word_tokenize
+from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
+
+from .sentiment_util import english_stop_words
 
 
 def format_input(user_input):
