@@ -33,10 +33,11 @@ def api():
     input_text = request.args.get("text")
 
     if input_text is None:
-        return jsonify(error="Empty Argument", results={})
+        return jsonify(code=400, error="Empty Argument", results={})
     else:
         input_text = input_text.replace("\"", "")
         return jsonify(
+            code=200,
             input=input_text,
             results=analyzer.sentiment_analyzer(input_text)
         )
