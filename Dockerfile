@@ -4,6 +4,8 @@ LABEL maintainer="kyledevinobrien1@gmail.com"
 
 COPY requirements.txt /lisent/requirements.txt
 
+RUN pip install --upgrade pip
+
 RUN pip install -r /lisent/requirements.txt
 
 COPY . /lisent/
