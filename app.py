@@ -19,6 +19,7 @@ def home():
         [Flask Template] -- [Welcome HTML Page]
     """
 
+    print("Log: Rendered HTML")
     return render_template("about.html")
 
 
@@ -33,14 +34,23 @@ def api():
     input_text = request.args.get("text")
 
     if input_text is None:
-        return jsonify(code=400, error="Empty Argument", results={})
+        response = {
+            "code": 400,
+            "error": True,
+            "errorMessage": "Empty Argument",
+            "results": {}
+        }
+        print(response)
+        return jsonify(response)
     else:
         input_text = input_text.replace("\"", "")
-        return jsonify(
-            code=200,
-            input=input_text,
-            results=analyzer.sentiment_analyzer(input_text)
-        )
+        response = {
+            "code": 200,
+            "error": False,
+            "results": analyzer.sentiment_analyzer(input_text)
+        }
+        print(response)
+        return jsonify(response)
 
 
 def configure_app():
