@@ -1,8 +1,10 @@
-FROM python:3.6.5-alpine3.7
+FROM python:3.7.0-alpine3.8
 
 LABEL maintainer="kyledevinobrien1@gmail.com"
 
 COPY requirements.txt /lisent/requirements.txt
+
+RUN pip install --upgrade pip
 
 RUN pip install -r /lisent/requirements.txt
 
@@ -16,4 +18,4 @@ RUN python nltk_setup.py
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["python", "-u", "app.py"]
